@@ -1,0 +1,97 @@
+<section id="registerForm">
+<div class="container py-5">
+    <h1 class="text-main">Register Now : </h1>
+    @if(errMsg){
+        <div class="alert alert-danger">{{errMsg}}</div>
+    }
+    <form [formGroup]="registerForm" (ngSubmit)="sendData()" class="my-3">
+      <div class="row justify-content-center gy-4">
+         <div class="col-md-8">
+         <label for="user-name">Name :</label>
+         <input type="text" class="form-control" id="user-name" formControlName="name"/>
+         @if(registerForm.get('name')?.errors && registerForm.get('name')?.touched){
+            <div>
+             @if(registerForm.get('name')?.errors?.['required']){
+                <p class="text-danger">Name is Required</p>
+             }
+             @if(registerForm.get('name')?.errors?.['minlength']){
+                <p class="text-danger">Name minLength is 3 char</p>
+             }
+             @if(registerForm.get('name')?.errors?.['maxlength']){
+                <p class="text-danger">Name maxLength is 10 char</p>
+             }
+               
+             </div>
+         }
+        
+         </div>
+         <div class="col-md-8">
+         <label for="user-email">Email :</label>
+         <input type="email" class="form-control" id="user-email" formControlName="email"/>
+         @if(registerForm.get('email')?.errors && registerForm.get('email')?.touched){
+            <div>
+             @if(registerForm.get('email')?.errors?.['required']){
+                <p class="text-danger">Email is Required</p>
+             }
+             @if(registerForm.get('email')?.errors?.['email']){
+                <p class="text-danger">Enter avalid email</p>
+             }
+     
+             </div>
+         }
+         </div>
+         <div class="col-md-8">
+         <label for="user-Password">Password :</label>
+         <input type="password" class="form-control" formControlName="password" id="user-Password"/>
+         @if(registerForm.get('password')?.errors && registerForm.get('password')?.touched){
+            <div>
+             @if(registerForm.get('password')?.errors?.['required']){
+                <p class="text-danger">password is Required</p>
+             }
+             @if(registerForm.get('password')?.errors?.['pattern']){
+                <p class="text-danger">Enter avalid password</p>
+             }
+             </div>
+         }
+         </div>
+         <div class="col-md-8">
+         <label for="user-rePassword">rePassword :</label>
+         <input type="password" class="form-control" formControlName="rePassword" id="user-rePassword"/>
+         @if(registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched){
+            <div>
+             @if(registerForm.get('rePassword')?.errors?.['required']){
+                <p class="text-danger">confirm password is Required</p>
+             }
+             @if(registerForm.get('rePassword')?.errors?.['pattern']){
+                <p class="text-danger">Enter avalid confirmedpassword</p>
+             }
+             </div>
+         }
+         </div>
+         <div class="col-md-8">
+         <label for="user-phone">Phone :</label>
+         <input type="tel" class="form-control" formControlName="phone" id="user-phone"/>
+         @if(registerForm.get('phone')?.errors && registerForm.get('phone')?.touched){
+            <div>
+             @if(registerForm.get('phone')?.errors?.['required']){
+                <p class="text-danger">phone is Required</p>
+             }
+             @if(registerForm.get('phone')?.errors?.['pattern']){
+                <p class="text-danger">Enter avalid phone</p>
+             }
+             </div>
+         }
+         </div>
+         <div class="col-md-8 text-end">
+          <button [disabled]="registerForm.invalid" type="submit" class="btn bg-main text-light">
+          Register
+          @if(isLoading){
+            <i class="fa-solid fa-spinner fa-spin"></i>
+          }
+          </button>
+          <button class="btn btn-warning mx-2 text-light" type="reset" (click)="clearForm()">Reset</button>
+         </div>
+      </div>
+    </form>
+</div>
+</section>
