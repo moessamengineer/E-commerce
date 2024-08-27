@@ -36,7 +36,7 @@
         <h3>Subtotal: {{ cartData.totalCartPrice }}</h3>
       </div>
       <div class="col-md-6">
-        <button class="btn btn-primary" (click)="checkout()">Checkout</button>
+        <button class="btn btn-primary" routerLink="/checkout">Checkout</button>
         <button class="btn btn-danger" (click)="clearCart()">Clear Cart</button>
       </div>
     </div>

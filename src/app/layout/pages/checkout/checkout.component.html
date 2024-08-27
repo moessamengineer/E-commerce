@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2>Checkout</h2>
+            <form [formGroup]="checkoutForm" (ngSubmit)="submitData()">
+                <h3>Shipping Address</h3>
+                <div class="form-group mb-3">
+                    <label for="details">Details</label>
+                    <textarea formControlName="details" class="form-control" id="details" placeholder="Enter your details"></textarea>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="phone">Phone</label>
+                    <input formControlName="phone" type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="city">City</label>
+                    <input type="text" formControlName="city" class="form-control" id="city" placeholder="Enter your city">
+                </div>
+                <h3>Payment Method</h3>
+                <div class="form-group mb-3">
+                    <select formControlName="paymentMethod" class="form-control" id="paymentMethod">
+                        <option value="visa">Visa</option>
+                        <option value="cash">Cash</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn bg-main float-end">Place Order</button>
+            </form>
+        </div>
+    </div>
+</div>
