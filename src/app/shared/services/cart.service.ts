@@ -24,6 +24,9 @@ export class CartService {
   GetProducts(): Observable<any> {
     return this._http.get(`${Environment.baseUrl}/cart`, { headers: this.header })
   }
+  getCartItemCount(): Observable<any> {
+    return this._http.get(`${Environment.baseUrl}/cart`, { headers: this.header })
+  }
   UpdateProductInCart(id: string, count: number): Observable<any> {
     return this._http.put(`${Environment.baseUrl}/cart/${id}`, {
       count: count
@@ -33,13 +36,13 @@ export class CartService {
     )
   }
   DeleteProductINCart(id: string): Observable<any> {
-    return this._http.delete(`${Environment.baseUrl}/cart${id}`, {
+    return this._http.delete(`${Environment.baseUrl}/cart/${id}`, {
       headers: this.header
     }
     )
   }
-  ClearUserCart(id: string): Observable<any> {
-    return this._http.delete(`${Environment.baseUrl}/cart${id}`, {
+  ClearUserCart(): Observable<any> {
+    return this._http.delete(`${Environment.baseUrl}/cart`, {
       headers: this.header
     }
     )

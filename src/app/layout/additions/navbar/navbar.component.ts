@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import  {Router, RouterLink, RouterLinkActive} from '@angular/router';
 import { AuthService } from '../../../shared/services/auth.service';
+import { CartService } from '../../../shared/services/cart.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -11,6 +12,7 @@ import { AuthService } from '../../../shared/services/auth.service';
 export class NavbarComponent {
 
   isLogin:boolean = false
+  cartItemCount!:number
   constructor(private _auth:AuthService,private _Router:Router){
 
   }
@@ -20,9 +22,10 @@ export class NavbarComponent {
         {
           this.isLogin=false;
         }else{
-          this.isLogin=true;
+          this.isLogin=true; 
         }
     })
+    
   }
   logout(){
     localStorage.removeItem('userToken');
