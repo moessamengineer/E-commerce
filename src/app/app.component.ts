@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from "./layout/additions/footer/footer.component";
 import { NavbarComponent } from "./layout/additions/navbar/navbar.component";
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +13,5 @@ import { NavbarComponent } from "./layout/additions/navbar/navbar.component";
 })
 export class AppComponent {
   title = 'ecommerce';
+
 }

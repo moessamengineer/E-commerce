@@ -11,6 +11,7 @@ import { AuthGuard } from './shared/guard/auth.guard';
 import { ProductDetailsComponent } from './layout/additions/product-details/product-details.component';
 import { CheckoutComponent } from './layout/pages/checkout/checkout.component';
 import { AllordersComponent } from './layout/pages/allorders/allorders.component';
+import { ForgetpasswordComponent } from './layout/pages/forgetpassword/forgetpassword.component';
 
 export const routes: Routes = [
 {path:'',redirectTo:'home',pathMatch:'full'},
@@ -23,6 +24,7 @@ export const routes: Routes = [
 {path:'categories',component:CategoriesComponent ,canActivate:[AuthGuard],title:'Categories'},
 {path:'checkout',component:CheckoutComponent ,canActivate:[AuthGuard],title:'Checkout'},
 {path:'login',component:LoginComponent,title:'Login'},
+{path:'forgetpassword',component:ForgetpasswordComponent,title:'Forget Password'},
 {path:'register',component:RegisterComponent,title:'Register'},
 {path:'**',component:NotfoundComponent,title:'Not Found'},
 ];
