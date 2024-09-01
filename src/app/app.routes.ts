@@ -19,7 +19,7 @@ export const routes: Routes = [
 {path:'',redirectTo:'home',pathMatch:'full'},
 {path:'home',component:HomeComponent,canActivate:[AuthGuard],title:'Home'},
 {path:'cart',component:CartComponent ,canActivate:[AuthGuard],title:'Cart'},
-{path:'productDetails/:id',component:ProductDetailsComponent ,canActivate:[AuthGuard],title:'id'},
+{path:'productDetails/:id',component:ProductDetailsComponent ,canActivate:[AuthGuard],title:'Product'},
 {path:'brands',component:BrandComponent ,canActivate:[AuthGuard],title:'Brands'},
 {path:'product',component:ProductComponent ,canActivate:[AuthGuard],title:'Products'},
 {path:'allorders',component:AllordersComponent ,canActivate:[AuthGuard],title:'All Orders'},
