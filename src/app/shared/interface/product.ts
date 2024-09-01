@@ -1,4 +1,5 @@
 export interface RootObject {
+isInWishlist: any;
   sold: number;
   images: string[];
   subcategory: Subcategory[];

@@ -1,1 +1,13 @@
-<p>categories works!</p>
+<div class="container">
+    <h1 class="text-center mt-5 mb-5">Categories</h1>
+    <div class="row">
+        <ng-container *ngFor="let category of categories">
+            <div class="col-md-4">
+                <div class="category">
+                    <img src="{{ category.image }}" alt="{{ category.name }}">
+                    <h4 class="mt-3">{{ category.name }}</h4>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

@@ -10,48 +10,56 @@ import { ForgotPassword } from '../interface/forgot-password';
   providedIn: 'root'
 })
 export class AuthService {
+  cartItemNumber= new BehaviorSubject(0)
 
 
-constructor(private _http:HttpClient) { 
-  afterNextRender(()=>{
-    if(localStorage.getItem('userToken')!=null){
-      this.userInformation();
-    }
-  })
-}
-
-register(formData:Register):Observable<any>{
-return this._http.post(`${Environment.baseUrl}/auth/signup`,formData)
-}
-
-login(formData:Login):Observable<any>{
-  return this._http.post(`${Environment.baseUrl}/auth/signin`,formData)
+  constructor(private _http: HttpClient) {
+    
+    afterNextRender(() => {
+      this.getCartItemCount().subscribe({
+        next:(res)=>{this.cartItemNumber.next(res.numOfCartItems)}
+      })
+      if (localStorage.getItem('userToken') != null) {
+        this.userInformation();
+      }
+    })
   }
 
-userData:BehaviorSubject<any> = new BehaviorSubject(null)
-userInformation(){
-let decoded = jwtDecode(JSON.stringify(localStorage.getItem('userToken')))
-this.userData.next(decoded)
-}
-
-forgotPassword(email:string):Observable<any>{
-  return this._http.post(`${Environment.baseUrl}/auth/forgotPasswords`,{
-    email:email
-  })
+  register(formData: Register): Observable<any> {
+    return this._http.post(`${Environment.baseUrl}/auth/signup`, formData)
   }
-  verifyResetCode(resetCode:string):Observable<any>{
-    return this._http.post(`${Environment.baseUrl}/auth/verifyResetCode`,{
-      resetCode:resetCode
+
+  login(formData: Login): Observable<any> {
+    return this._http.post(`${Environment.baseUrl}/auth/signin`, formData)
+  }
+
+  userData: BehaviorSubject<any> = new BehaviorSubject(null)
+  userInformation() {
+    let decoded = jwtDecode(JSON.stringify(localStorage.getItem('userToken')))
+    this.userData.next(decoded)
+  }
+
+  forgotPassword(email: string): Observable<any> {
+    return this._http.post(`${Environment.baseUrl}/auth/forgotPasswords`, {
+      email: email
     })
-    } 
-    changeMyPassword(passwordForm:ForgotPassword):Observable<any>{
-    return this._http.put(`${Environment.baseUrl}/users/changeMyPassword`,passwordForm)
-    } 
-    resetPassword(email:string, newPassword:string):Observable<any>{
-    return this._http.put(`${Environment.baseUrl}/auth/resetPassword`,{
-      email:email,
-      newPassword:newPassword
+  }
+  verifyResetCode(resetCode: string): Observable<any> {
+    return this._http.post(`${Environment.baseUrl}/auth/verifyResetCode`, {
+      resetCode: resetCode
     })
-    } 
+  }
+  changeMyPassword(passwordForm: ForgotPassword): Observable<any> {
+    return this._http.put(`${Environment.baseUrl}/users/changeMyPassword`, passwordForm)
+  }
+  resetPassword(email: string, newPassword: string): Observable<any> {
+    return this._http.put(`${Environment.baseUrl}/auth/resetPassword`, {
+      email: email,
+      newPassword: newPassword
+    })
+  }
+  getCartItemCount(): Observable<any> {
+    return this._http.get(`${Environment.baseUrl}/cart`)
+  }
 }
 

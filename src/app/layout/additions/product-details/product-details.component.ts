@@ -6,6 +6,7 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgFor } from '@angular/common';
 import { CartService } from '../../../shared/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-product-details',
@@ -41,7 +42,7 @@ export class ProductDetailsComponent {
   }
   id!:string
   productDetails!:ProductDetails
-  constructor(private _route:ActivatedRoute , private _productService:ProductService, private _cart:CartService,private _toaster:ToastrService) {
+  constructor(private _route:ActivatedRoute , private _productService:ProductService, private _cart:CartService,private _toaster:ToastrService,private _auth:AuthService) {
 
   }
 ngOnInit():void{
@@ -55,7 +56,9 @@ error:()=>{}})
 }
 addToCart(id:string){
   this._cart.AddProductToCart(id).subscribe({
-    next:(res)=>{this._toaster.success(res.message)}
+    next:(res)=>{
+      this._auth.cartItemNumber.next(res.numOfCartItems)
+      this._toaster.success(res.message)}
   })
 }
 }

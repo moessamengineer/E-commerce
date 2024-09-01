@@ -29,6 +29,9 @@
               </small>
             </div>
             <button class="btn bg-main btn-block mt-2" (click)="addToCart($event, product.id)">Add to Cart</button>
+            <button class="btn btn-link text-danger mt-1" (click)="toggleWishlist($event, product)">
+              <i class="fa-heart" [ngClass]="{'fa-solid': product.isInWishlist, 'fa-regular': !product.isInWishlist}"></i>
+            </button>
           </div>
         </div>
       </div>

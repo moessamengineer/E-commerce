@@ -12,6 +12,8 @@ import { ProductDetailsComponent } from './layout/additions/product-details/prod
 import { CheckoutComponent } from './layout/pages/checkout/checkout.component';
 import { AllordersComponent } from './layout/pages/allorders/allorders.component';
 import { ForgetpasswordComponent } from './layout/pages/forgetpassword/forgetpassword.component';
+import { WishListComponent } from './layout/pages/wish-list/wish-list.component';
+import { ProductComponent } from './layout/pages/product/product.component';
 
 export const routes: Routes = [
 {path:'',redirectTo:'home',pathMatch:'full'},
@@ -19,9 +21,10 @@ export const routes: Routes = [
 {path:'cart',component:CartComponent ,canActivate:[AuthGuard],title:'Cart'},
 {path:'productDetails/:id',component:ProductDetailsComponent ,canActivate:[AuthGuard],title:'id'},
 {path:'brands',component:BrandComponent ,canActivate:[AuthGuard],title:'Brands'},
-{path:'products',component:ProductsComponent ,canActivate:[AuthGuard],title:'Products'},
+{path:'product',component:ProductComponent ,canActivate:[AuthGuard],title:'Products'},
 {path:'allorders',component:AllordersComponent ,canActivate:[AuthGuard],title:'All Orders'},
 {path:'categories',component:CategoriesComponent ,canActivate:[AuthGuard],title:'Categories'},
+{path:'wish-list',component:WishListComponent ,canActivate:[AuthGuard],title:'Wish List'},
 {path:'checkout',component:CheckoutComponent ,canActivate:[AuthGuard],title:'Checkout'},
 {path:'login',component:LoginComponent,title:'Login'},
 {path:'forgetpassword',component:ForgetpasswordComponent,title:'Forget Password'},

@@ -1,23 +1,25 @@
 import { Component } from '@angular/core';
 import { CartService } from '../../../shared/services/cart.service';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [NgFor,RouterLink],
+  imports: [NgFor,RouterLink,NgIf],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
 export class CartComponent {
   cartData: any = {};
 
-  constructor(private _cart: CartService) { }
+  constructor(private _cart: CartService,private _auth:AuthService) { }
 
   ngOnInit() {
     this._cart.GetProducts().subscribe({
       next: (res) => {
+        this._auth.cartItemNumber.next(res.numOfCartItems)
         this.cartData = res.data;
       }
     });
@@ -28,6 +30,7 @@ export class CartComponent {
       next: (res) => {
         this._cart.GetProducts().subscribe({
           next: (res) => {
+            this._auth.cartItemNumber.next(res.numOfCartItems)
             this.cartData = res.data;
           }
         });
@@ -41,6 +44,7 @@ export class CartComponent {
         console.log(res)
         this._cart.GetProducts().subscribe({
           next: (res) => {
+            this._auth.cartItemNumber.next(res.numOfCartItems)
             this.cartData = res.data;
           }
         });
@@ -53,6 +57,7 @@ export class CartComponent {
       next: (res) => {
         this._cart.GetProducts().subscribe({
           next: (res) => {
+            this._auth.cartItemNumber.next(res.numOfCartItems)
             this.cartData = res.data;
           }
         });
